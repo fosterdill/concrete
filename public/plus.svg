@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="13px" height="13px" viewBox="0 0 13 13" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 50.2 (55047) - http://www.bohemiancoding.com/sketch -->
+    <title>Group 2</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="square">
+        <g id="Artboard" transform="translate(-163.000000, -482.000000)" stroke="#979797">
+            <g id="Group-2" transform="translate(163.000000, 482.000000)">
+                <path d="M6.5,0.5 L6.5,12.5" id="Line-4"></path>
+                <path d="M6.5,0.5 L6.5,12.5" id="Line-4" transform="translate(6.500000, 6.500000) rotate(90.000000) translate(-6.500000, -6.500000) "></path>
+            </g>
+        </g>
+    </g>
+</svg>

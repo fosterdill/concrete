@@ -1,0 +1,19 @@
+{
+  "$schema": "http://json-schema.org/schema#",
+  "title": "components",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "properties": {
+      "endpoints": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      },
+      "notes": {
+        "type": "string"
+      }
+    }
+  }
+}

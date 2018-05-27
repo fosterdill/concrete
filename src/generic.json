@@ -1,0 +1,17 @@
+[
+  {
+    "title": "Generic",
+    "type": "object",
+    "properties": {
+      "endpoint": {
+        "type": "string"
+      },
+      "fields": {
+        "type": "array"
+      },
+      "notes": {
+        "type": "string"
+      }
+    }
+  }
+]
