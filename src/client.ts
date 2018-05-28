@@ -2,6 +2,7 @@ import { withClientState } from 'apollo-link-state';
 import { InMemoryCache } from 'apollo-cache-inmemory';
 import ApolloClient from 'apollo-client';
 import gql from 'graphql-tag';
+import { keys } from 'lodash';
 
 const cache = new InMemoryCache();
 let boxId = 1;
@@ -44,11 +45,49 @@ const defaults = {
     __typename: 'Template',
     id: 1,
     name: 'basic'
-  }
+  },
+
+  repos: [
+    'https://fosterdill.github.io/concrete/src/templates/basic/'
+  ]
 };
 
 const resolvers = {
   Query: {
+    configs: async (_: any, __: any, { cache }: any) => {
+      const { repos } = cache.readQuery({
+        query: gql`
+          {
+            repos
+          }
+        `
+      });
+
+      const data = {
+        configs: {
+          __typename: 'Configs'
+        }
+      };
+
+      repos.forEach(async (repoUrl: string) => {
+        const config = await fetch(`${repoUrl}config.json`).then((response) => response.json());
+
+        keys(config.defaults).forEach(async (key) => {
+          const fileName = config.defaults[key];
+
+          const object = await fetch(`${repoUrl}${fileName}`).then((response) => response.json());
+          config.defaults[key] = object;
+          config.defaults[key].__typename = object.title;
+        })
+
+        config.template = await fetch(`${repoUrl}${config.template}`).then((response) => response.json());
+        config.template.__typename = 'Template';
+
+        data.configs[config.name] = config;
+      });
+
+      return data;
+    }
   },
 
   Mutation: {

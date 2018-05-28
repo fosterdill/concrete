@@ -7,6 +7,8 @@ import SidebarComponent from "./sidebar-component";
 import TextArea from "./text-area";
 import TextField from "./text-field";
 import List from "./list";
+import Query from "react-apollo/Query";
+import gql from "graphql-tag";
 
 
 const SidebarContentDiv = styled.div`
@@ -25,7 +27,15 @@ const SidebarDiv = styled.div`
 
 const Sidebar: React.SFC = () => (
   <SidebarDiv>
-    <HeaderDropdown />
+    <Query query={gql`
+      {
+        configs @client
+      }
+    `}>
+      {() => (
+        <HeaderDropdown />
+      )}
+    </Query>
     <SidebarContentDiv>
       <SidebarSectionHeader>
         TYPE

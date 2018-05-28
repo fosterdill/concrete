@@ -2,7 +2,7 @@
   "name": "Basic",
   "defaults": {
     "none": "page.schema.json",
-    "new": "components.schema.json"
+    "new": "component.schema.json"
   },
   "template": "template.md"
 }
