@@ -38,6 +38,8 @@ const EditorDiv = styled.div`
 
 const StyledImage = styled.img`
   user-select: none;
+  box-shadow: 0 0 4px rgba(201, 201, 201, .2);
+  border: 1px solid rgb(215, 215, 215);
 `;
 
 const startDragging = gql`
@@ -67,6 +69,7 @@ const Editor: React.SFC = () => (
         }
 
         createdEditorBoxes  @client {
+          id
           topLeft {
             x
             y
@@ -111,10 +114,36 @@ const Editor: React.SFC = () => (
                       <div ref={someref}>
                         <StyledImage draggable={false} src={`data:image/png;base64,${localStorage.getItem('img-1')}`} />
                         {topLeft.x && topLeft.y &&
-                          <EditorBox parentRef={something.currentBox} />
+                          <Query query={gql`
+                            {
+                              fillColor {
+                                r
+                                g
+                                b
+                                a
+                              }
+                            }
+                          `}>
+                            {({ data: { fillColor }}) => (
+                              <EditorBox fillColor={fillColor} parentRef={something.currentBox} />
+                            )}
+                          </Query>
                         }
-                        {createdEditorBoxes.map(({ topLeft, bottomRight }: any) => (
-                          <EditorBox topLeft={topLeft} bottomRight={bottomRight} />
+                        {createdEditorBoxes.map(({ id, topLeft, bottomRight }: any) => (
+                          <Query query={gql`
+                            {
+                              fillColor {
+                                r
+                                g
+                                b
+                                a
+                              }
+                            }
+                          `}>
+                            {({ data: { fillColor }}) => (
+                              <EditorBox fillColor={fillColor} key={id} topLeft={topLeft} bottomRight={bottomRight} />
+                            )}
+                          </Query>
                         ))}
                       </div>
                     </Draggable>

@@ -7,6 +7,8 @@ const cache = new InMemoryCache();
 let boxId = 1;
 
 const defaults = {
+  isColorPickerOpen: false,
+
   editorBox: {
     topLeft: {
       x: null,
@@ -14,6 +16,14 @@ const defaults = {
       __typename: 'TopLeft'
     },
     __typename: 'EditorBox'
+  },
+
+  fillColor: { 
+    r: 253, 
+    g: 252, 
+    b: 255, 
+    a: 0.5,
+    __typename: 'FillColor'
   },
 
   createdEditorBoxes: [],
@@ -37,6 +47,38 @@ const defaults = {
 
 const resolvers = {
   Mutation: {
+    changeFillColor(_: any, { fillColor }: any, { cache }: any) {
+      const data = {
+        fillColor: {
+          r: fillColor.r,
+          g: fillColor.g,
+          b: fillColor.b,
+          a: fillColor.a,
+          __typename: 'FillColor'
+        }
+      };
+
+      cache.writeData({ data });
+
+      return data;
+    },
+
+    toggleColorPicker(_: any, __: any, { cache }: any) {
+      const previous = cache.readQuery({ query: gql`
+        {
+          isColorPickerOpen
+        }
+      `});
+
+      const data = {
+        isColorPickerOpen: !previous.isColorPickerOpen
+      }
+
+      cache.writeData({ data });
+
+      return data;
+    },
+
     startDragging(_: any, { x, y }: any, { cache }: any) {
       const data = {
         editorBox: {

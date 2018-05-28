@@ -36,7 +36,7 @@ const List: React.SFC = () => (
     </TextFieldContainerDiv>
     <ListContent>
       {list.map((item) => (
-        <ListItem>{item}</ListItem>
+        <ListItem key={item}>{item}</ListItem>
       ))}
     </ListContent>
   </div>
