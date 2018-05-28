@@ -3,17 +3,15 @@ import * as React from 'react';
 import gql from 'graphql-tag';
 import Query from "react-apollo/Query";
 import styled from "styled-components";
-const fontColor = "rgb(247, 248, 255)";
+import { headerStyles, headerFontColor } from "../style-vars";
 
 const HeaderDiv = styled.div`
-  height: 34px;
+  ${headerStyles}
   align-items: center;
   box-sizing: border-box;
   display: flex;
   width: 100%;
-  background: rgb(151, 151, 151);
   justify-content: space-between;
-  color: ${fontColor};
   padding: 2px 14px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, .22);
 `;
@@ -27,7 +25,7 @@ const HeaderH1 = styled.h1`
   line-height: 1.5;
   font-size: 20px;
   font-family: "PT Serif Caption", serif;
-  color: ${fontColor};
+  color: ${headerFontColor};
 `;
 
 const DropdownDiv = styled.div`

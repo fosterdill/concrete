@@ -8,11 +8,15 @@ import TextArea from "./text-area";
 import TextField from "./text-field";
 import List from "./list";
 
+
 const SidebarContentDiv = styled.div`
+  overflow: scroll;
+  max-height: calc(100% - 34px);
 `;
 
 const SidebarDiv = styled.div`
-  width: 342px;
+  z-index: 1;
+  flex: 0 0 342px;
   height: 100%;
   box-shadow: 0 2px 4px rgba(0, 0, 0, .06);
   border-right: 1px solid rgb(215, 215, 215);
@@ -22,18 +26,16 @@ const SidebarDiv = styled.div`
 const Sidebar: React.SFC = () => (
   <SidebarDiv>
     <HeaderDropdown />
-    <SidebarSectionHeader>
-      TYPE
-    </SidebarSectionHeader>
     <SidebarContentDiv>
+      <SidebarSectionHeader>
+        TYPE
+      </SidebarSectionHeader>
       <SidebarComponent canAddMoreOnHover={false}>
         <Dropdown />
       </SidebarComponent>
-    </SidebarContentDiv>
-    <SidebarSectionHeader>
-      FIELDS
-    </SidebarSectionHeader>
-    <SidebarContentDiv>
+      <SidebarSectionHeader>
+        FIELDS
+      </SidebarSectionHeader>
       <SidebarComponent canAddMoreOnHover={false}>
         <TextArea />
       </SidebarComponent>

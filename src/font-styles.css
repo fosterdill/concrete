@@ -42,3 +42,12 @@
 .icon-up-open-big:before {
   content: "\62";
 }
+.icon-plus:before {
+  content: "\63";
+}
+.icon-minus:before {
+  content: "\64";
+}
+.icon-down-circled:before {
+  content: "\65";
+}
