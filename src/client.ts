@@ -18,6 +18,8 @@ const defaults = {
     __typename: 'EditorBox'
   },
 
+  dataConfigs: [],
+
   fillColor: { 
     r: 253, 
     g: 252, 
@@ -41,11 +43,14 @@ const defaults = {
   selectedTemplate: {
     __typename: 'Template',
     id: 1,
-    name: 'Basic'
+    name: 'basic'
   }
 };
 
 const resolvers = {
+  Query: {
+  },
+
   Mutation: {
     changeFillColor(_: any, { fillColor }: any, { cache }: any) {
       const data = {
